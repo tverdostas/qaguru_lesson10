@@ -1,0 +1,36 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            "com.codeborne:selenide:7.9.4",
+            "org.junit.jupiter:junit-jupiter:5.9.3",
+            "org.slf4j:slf4j-simple:2.0.17",
+            "commons-io:commons-io:2.15.1",
+            "com.codeborne:pdf-test:1.5.0",
+            "com.codeborne:xls-test:1.4.3",
+            "com.opencsv:opencsv:5.9",
+            "com.fasterxml.jackson.core:jackson-core:2.19.2",
+            'com.fasterxml.jackson.core:jackson-databind:2.19.2'
+    )
+    testImplementation 'org.projectlombok:lombok:1.18.38'
+
+    testRuntimeOnly(
+            "org.slf4j:slf4j-api:2.0.17"
+    )
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+test {
+    useJUnitPlatform()
+}
