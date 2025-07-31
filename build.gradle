@@ -3,6 +3,10 @@ plugins {
     id 'io.qameta.allure' version '2.12.0'
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 allure {
     report {
         version.set("2.19.0")

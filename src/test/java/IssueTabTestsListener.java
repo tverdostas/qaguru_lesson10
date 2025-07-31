@@ -29,9 +29,7 @@ public class IssueTabTestsListener {
         step("Открыть главную страницу", () -> {
             open("https://github.com");
                 });
-        step("Поставить фокус на поле поиска", () -> {
-            $("span.flex-1[data-target='qbsearch-input.inputButtonText']").click();
-        });
+        step("Поставить фокус на поле поиска", () -> $("span.flex-1[data-target='qbsearch-input.inputButtonText']").click());
         step("Ввести текст поиска и нажать Enter", () -> {
                     $("input#query-builder-test").setValue("selenide").pressEnter();
                 });
@@ -41,5 +39,16 @@ public class IssueTabTestsListener {
         step("Проверить, что таб Issues виден на странице", () -> {
         $("span[data-content='Issues']").shouldBe(Condition.visible);
         });
+    }
+
+    @Test
+    void IssueTabWithAnnotatedStepsTest(){
+        SelenideLogger.addListener("allure", new AllureSelenide());
+        WebSteps steps = new WebSteps();
+        steps.openMainPage();
+        steps.clickOnSearchField();
+        steps.fillSearchField();
+        steps.goToSelenidePage();
+        steps.checkIssueTabOnPage();
     }
 }
