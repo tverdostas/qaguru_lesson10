@@ -1,6 +1,10 @@
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selectors.byText;
@@ -18,7 +22,7 @@ public class IssueTabTestsListener {
 
         $("span.flex-1[data-target='qbsearch-input.inputButtonText']").click();
         $("input#query-builder-test").setValue("selenide").pressEnter();
-        $("data-testid='results-list'").$(byText("selenide/selenide")).click();
+        $("[data-testid='results-list']").$(byText("selenide/")).click();
         $("span[data-content='Issues']").shouldBe(Condition.visible);
     }
 
@@ -33,8 +37,9 @@ public class IssueTabTestsListener {
         step("Ввести текст поиска и нажать Enter", () -> {
                     $("input#query-builder-test").setValue("selenide").pressEnter();
                 });
-        step("Перейти на страницу Селенида, первую в поиске", () -> {
-        $("data-testid='results-list'").$(byText("selenide/selenide")).click();
+        step(
+                "Перейти на страницу Селенида, первую в поиске", () -> {
+            $("[data-testid='results-list']").$(byText("selenide/")).click();
         });
         step("Проверить, что таб Issues виден на странице", () -> {
         $("span[data-content='Issues']").shouldBe(Condition.visible);

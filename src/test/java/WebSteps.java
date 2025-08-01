@@ -1,4 +1,5 @@
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selectors.byText;
@@ -7,6 +8,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class WebSteps {
 
+    private final SelenideElement sercInp = $("[data-testid='results-list']");
     @Step
     public void openMainPage(){
         open("https://github.com");
@@ -24,7 +26,7 @@ public class WebSteps {
 
     @Step
     public void goToSelenidePage(){
-        $("data-testid='results-list'").$(byText("selenide/selenide")).click();
+        sercInp.$(byText("selenide/")).click();
     }
 
     @Step
